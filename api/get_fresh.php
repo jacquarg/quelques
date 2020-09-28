@@ -13,15 +13,30 @@
         "pourras", "le", "garder"];
     $res = array();
     foreach($words as $word) {
-        $url = "https://api.twitter.com/2/tweets/search/recent?query=".$word;
+        $url = 'https://api.twitter.com/2/tweets/search/recent?query="'.$word.'"';
     
         $response = file_get_contents($url, false, $context);
-        $tweet = json_decode($response)->data[0]->text;
-        $res[$word] = $tweet;
+        switch($word) {
+            case "t'ai": $regex = 't[\'’]ai' ; break;
+            case "donne": $regex = 'donn[eé]' ; break;
+            case "ca": $regex = '[cç]a' ; break;
+            default: $regex = $word; break;
+        }
+
+        $regex = '/\b'.$regex.'\b/';
+        $tweet = "";
+        foreach(json_decode($response)->data as $tweet) {
+            $match = preg_match($regex, strtolower($tweet->text));
+            if ($match != 0) {
+                break;
+            }
+        }
+
+        $res[$word] = $tweet->text;
     }
     
     $json = json_encode($res);
-    $path = date('Y\/m\/d\.\t\x\t');
+    $path = "../data/".date('Y\/m\/d\.\t\x\t');
     mkdir(dirname($path), 0755, true);
     file_put_contents($path, $json.PHP_EOL , FILE_APPEND | LOCK_EX);
 
