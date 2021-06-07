@@ -13,54 +13,21 @@
     <link href="./res/style.css" rel="stylesheet">
 
     <style>
-      /* menu **********************************************/
 
-      .menu-btn {
-        position: absolute;
-        right: 16px;
-        top: 16px;
-        width: 70px;
+
+      .content {
+        margin: 24px;
+        padding-top: 100px;
       }
-
-      .menu {
-        display: none;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        padding: 100px 40px;
-        background: #EDF2FA;
-        overflow: hidden;
-        box-sizing: border-box;
-      }
-
       @media (min-width: 576px) {
-        .menu {
-          display: block;
-          height: 70px;
+        .content {
+          width: 576px;
+          padding-top: 150px;
+          padding-bottom: 150px;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
-
-
-
-      .menu > a {
-        font-family: 'Cormorant Infant', serif;
-        font-size: 24pt;
-        color: black;
-        text-decoration: none;
-        display: block;
-        padding-bottom: 24px;
-      }
-
-      .menu > .close {
-        position: absolute;
-        right: 16px;
-        top: 16px;
-        width: 70px;
-      }
-
-
 
       /* popup **********************************************/
 
@@ -136,12 +103,6 @@
             color: black;
             text-decoration: none;
       }
-
-
-
-      /* other ***********************************************/
-
-
     </style>
   </head>
   <body id="body">
@@ -149,10 +110,14 @@
       <div class="menu-btn narrow-only" id="menu-btn"><img src='./res/img/SMS-CROSS-02.png' /></div>
       <div class="menu" id="menu">
         <div class="close narrow-only" id="close-menu"><img src='./res/img/SMS-CROSS-02.png' /></div>
-        <a href="./" class="home-btn">#home</a>
-        <a href="./participate" class="participate-btn">#capture</a>
+        <a href="./" class="home-btn large-only">#</a>
+        <a href="./" class="home-btn narrow-only">#home</a>
+        <a href="./capture" class="capture-btn">#capture</a>
         <a href="./about" class="about-btn">#àpropos</a>
       </div>
+
+      <div class="copyright" id="copyright">Quelques mots pour quelque chose de terminé - 2020 - <a href="https://www.vaxt.fr"  target="_blank">V</a></div>
+      <div class="legal" id="legal"><a href="./legal">Mentions légales</a></div>
 
       <div class="content" id="aphorism">@Alowa_: Donc JE passe mon temps à expliquer aux élèves qu’il faut pas faire de boucles infinies et on nous
 sort des pubs comme ça ??? h... @LectureDuCoran: Ya Allah, je T’AI dit: « Donne moi de l’espoir !» Tu ma dit:
@@ -170,7 +135,6 @@ mis un cendrier dans ta voiture comme ça tu POURRAS transporter tes morts http.
 sont LE résultat de belles initiatives mais en toute franchise... qu’est ce que ça a bousillé notre génération,
 not... @EBaldii: A l’heure actuelle je suis encore entrain de GARDER des secrets de gens qui salissent mon
 nom, ne venez pas me parler de loyau...</div>
-      <div class="copyright" id="copyright">Je suis glas, glace de toi - 2020 - <a href="https://www.vaxt.fr"  target="_blank">V</a></div>
     </div>
 
     <div class="popup-background" id="popup">
@@ -182,7 +146,7 @@ nom, ne venez pas me parler de loyau...</div>
 <p>Une œuvre artistique
 <br>reprenant les tweets les plus récents
 <br>afin d'afficher, toujous, le même aphorisme.</p>
-<p><b>Il uffit de cliquerpou recharger les tweets.</b></p>
+<p><b>Il suffit de cliquer pour recharger les tweets.</b></p>
         </div>
         <div class="content narrow-only">
 <p>Quelques mots
@@ -200,10 +164,12 @@ nom, ne venez pas me parler de loyau...</div>
         </div>
       </div>
     </div>
-
+    <script src="./script/main.js"></script>
     <script>
       // init
       function initialize() {
+        initializeMenu()
+
         document.getElementById("popup").addEventListener("click",
           ev => {
             // prevent closing explanation on click on the links.
@@ -215,22 +181,7 @@ nom, ne venez pas me parler de loyau...</div>
 
             document.getElementById("popup").style.display = "none"
           })
-
-        document.getElementById("menu-btn").addEventListener("click" ,
-          ev => {
-            document.getElementById("menu").style.display = "block"
-          })
-        document.getElementById("close-menu").addEventListener("click" ,
-          ev => {
-            document.getElementById("menu").style.display = "none"
-          })
       }
-
-
-      // Tools
-
-
-      // Data
 
       initialize()
     </script>
