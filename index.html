@@ -190,7 +190,12 @@
       function getFresh() {
         fetch("/api/get_fresh.php")
         .then((response) => {
-          response.json().then(buildText)
+          console.log(response)
+          response.text().then((raw) => {
+            console.log(raw)
+            //response.json().then(buildText)
+            buildText(JSON.parse(raw))
+          })
         })
         // buildText(dummy)
       }

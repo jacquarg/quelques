@@ -26,7 +26,6 @@
 
             $regex = '/\b'.$regex.'\b/';
             $tweet = "";
-            printf($raw);
             $response = json_decode($raw);
             foreach($response->data as $tweet) {
                 $match = preg_match($regex, strtolower($tweet->text));
@@ -37,7 +36,7 @@
 
             $resTweet = array();
             $resTweet["id"] = $tweet->id;
-            $resTweet["text"] = $tweet->text;
+            $resTweet["text"] = $tweet->text; //str_replace('"', "＂", $tweet->text);
 
             $userIndex = array_search($tweet->author_id, array_column($response->includes->users, 'id'));
             $resTweet["username"] = ($userIndex !== false ? $response->includes->users[$userIndex]->username : null);
@@ -45,6 +44,8 @@
             $res[$word] = $resTweet;
         }
         $res["timestamp"] = date("c");
+        // return addslashes(json_encode($res, JSON_UNESCAPED_UNICODE));
+        // return json_encode($res, JSON_UNESCAPED_UNICODE);
         return  json_encode($res);
     }
 ?>
