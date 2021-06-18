@@ -188,14 +188,12 @@
       }
 
       function getFresh() {
+        loading(true)
         fetch("/api/get_fresh.php")
-        .then((response) => {
-          console.log(response)
-          response.text().then((raw) => {
-            console.log(raw)
-            //response.json().then(buildText)
-            buildText(JSON.parse(raw))
-          })
+        .then((response) => response.json())
+        .then((json) => {
+          buildText(json)
+          loading(false)
         })
         // buildText(dummy)
       }
@@ -231,6 +229,11 @@
 
           res = `<span class="username">@${tweetObj.username} : </span>${res}`
           return res
+      }
+
+      function loading(isLoading) {
+        document.getElementById("aphorism").style
+          .cursor = isLoading ? "wait" : null
       }
 
       initialize()

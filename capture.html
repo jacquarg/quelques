@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <title>Quelques Captures</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant&family=Mukta&display=swap" rel="stylesheet">
+    <!--link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant&family=Mukta&display=swap" rel="stylesheet"-->
+
+
+    <link href="./res/style.css" rel="stylesheet">
+
+    <style>
+
+
+      .content {
+        margin: 24px;
+        padding-top: 100px;
+      }
+      /* @media (min-width: 576px) {
+        .content {
+          width: 576px;
+          padding-top: 150px;
+          padding-bottom: 150px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      } */
+
+      /* list **********************************************/
+      .list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .list .item {
+        padding: 30px;
+        box-sizing: border-box;
+        flex: 1 0 300px;
+      }
+
+      .list .aphorism {
+        font-size: 12pt;
+      }
+
+
+      /* popup **********************************************/
+
+      .popup-background {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        background: #EDF2FACC;
+      }
+
+      .popup {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        right: 16px;
+        bottom: 16px;
+        background: #fdfefe;
+      }
+
+      @media (min-width: 716px) {
+        .popup {
+          position: absolute;
+          width: 576px;
+          height: 576px;
+          max-height: 80%;
+          left: 50%;
+          top: 50%;
+          right: auto;
+          bottom: auto;
+
+          margin-left: -272px;
+          max-height: 80%;
+          transform: translateY(-50%);
+        }
+      }
+
+      .popup > .content {
+        height: calc(100% - 80px);
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 70px;
+        margin-bottom: 10px;
+
+        overflow-y: auto;
+        padding: 0 24px;
+
+        font-family: 'Cormorant Infant', serif;
+        font-size: 14pt;
+
+        scrollbar-width: thin;
+      }
+
+      @media (min-width: 716px) {
+        .popup > .content {
+          height: calc(100% - 200px);
+          margin: 100px 70px;
+        }
+      }
+
+      .popup > .close {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 70px;
+      }
+
+      @media (min-width: 716px) {
+        .popup > .close {
+          right: 8px;
+          top: 16px;
+        }
+      }
+
+      .popup a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .popup .previous,
+      .popup .next {
+        position: absolute;
+        top: 0px;
+        width: 70px;
+      }
+
+      .popup .previous {
+        left: 0px;
+      }
+      .popup .previous {
+        left: 70px;
+      }
+
+      @media (min-width: 716px) {
+        .popup .previous,
+        .popup .next {
+          top: 50%;
+        }
+
+        .popup .previous {
+          left: 0px;
+        }
+        .popup .next {
+
+          right: 0px;
+        }
+      }
+
+    </style>
+  </head>
+  <body id="body">
+    <div class="main-container" id="main-container">
+      <div class="menu-btn narrow-only" id="menu-btn"><img src='./res/img/SMS-CROSS-02.png' /></div>
+      <div class="menu" id="menu">
+        <div class="close narrow-only" id="close-menu"><img src='./res/img/SMS-CROSS-02.png' /></div>
+        <a href="./" class="home-btn large-only">#</a>
+        <a href="./" class="home-btn narrow-only">#home</a>
+        <a href="./capture" class="capture-btn">#capture</a>
+        <a href="./about" class="about-btn">#àpropos</a>
+      </div>
+
+      <div class="copyright" id="copyright">Quelques mots pour quelque chose de terminé - 2020 - <a href="https://www.vaxt.fr"  target="_blank">V</a></div>
+      <div class="legal" id="legal"><a href="./legal">Mentions légales</a></div>
+
+      <div class="content list" id="list"></div>
+    </div>
+
+    <div class="popup-background" id="popup">
+      <div class="popup" >
+        <div class="close" id="close-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
+        <div class="previous" id="previous-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
+        <div class="next" id="next-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
+        <div id="popup-content" class="content"/>
+      </div>
+    </div>
+    <script src="./script/main.js"></script>
+    <script>
+      // init
+      function initialize() {
+        initializeMenu()
+
+        document.getElementById("close-popup").addEventListener("click",
+          ev => {
+            // prevent closing explanation on click on the links.
+            try {
+                if (ev.target.nodeName.toLowerCase() == 'a') {
+                    return
+                }
+            } catch(e) {}
+
+            document.getElementById("popup").style.display = "none"
+          })
+
+          // hide popup at start.
+          document.getElementById("popup").style.display = "none"
+          loadMore()
+      }
+
+      let lastMonth = null
+      let lastYear = null
+      function loadMore() {
+        if (lastMonth == null && lastYear == null) {
+          lastMonth = new Date().getMonth() + 1
+          lastYear = new Date().getFullYear()
+        } else {
+          if (lastMonth == 1) {
+            lastMonth = 12
+            lastYear = lastYear - 1
+          } else {
+            lastMonth = lastMonth - 1
+          }
+        }
+        const month = (lastMonth < 10) ? "0" + lastMonth : "" + lastMonth
+
+        loading(true)
+        fetch(`/data/captures/${lastYear}/${month}.txt`)
+        .then((response) => {
+          console.log(response)
+          response.text().then((raw) => {
+            console.log(raw)
+            raw.split("\n").forEach((line) => {
+              try {
+                const json = JSON.parse(line)
+                appendTweet(json)
+              } catch(e) {}
+            })
+            const items = document.getElementsByClassName("item")
+            for (let i = 0; i < items.length; i++) {
+              const item = items.item(i)
+              console.log(item)
+              item.addEventListener("click", (ev) => {
+                console.log("click ici !")
+                showPopup(i) })
+            }
+            //response.json().then(buildText)
+            // buildText(JSON.parse(raw))
+            loading(false)
+          })
+        })
+        // buildText(dummy)
+      }
+
+      function showPopup(index) {
+        const items = document.getElementsByClassName("item")
+
+        //const popupElem =
+        document.getElementById("popup-content").innerHTML = items.item(index).innerHTML
+        document.getElementById("popup").style.display = "block"
+
+        const previousElem = document.getElementById("previous-popup")
+        if (index > 0) {
+          previousElem.style.display = "block"
+          previousElem.addEventListener("click", (ev) => showPopup(index - 1))
+        } else {
+          previousElem.style.display = "none"
+        }
+
+        const nextElem = document.getElementById("next-popup")
+        if (index < items.length - 1) {
+          nextElem.style.display = "block"
+          nextElem.addEventListener("click", (ev) => showPopup(index + 1))
+        } else {
+          nextElem.style.display = "none"
+        }
+      }
+
+      function appendTweet(tweet) {
+        const date = new Date(tweet.timestamp)
+        const monthes = ["janvier", "février", "mars", "avril", "mai", "juin",
+      "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+
+        const aphorism = buildAphorism(tweet)
+        // document.getElementById("list").innerHTML = `<div>${aphorism}</div>`
+
+        const itemHtml = `<div class="item">
+          <h3>${date.getDate()} ${monthes[date.getMonth()]} ${date.getFullYear()}</h3>
+          <div class="aphorism">${aphorism}</div>
+        </div>`
+        const listElem = document.getElementById("list")
+        listElem.innerHTML += itemHtml
+        // listElem.lastElementChild.addEventListener("click", (ev) => {
+        //   console.log("click ici !")
+        //    showPopup(itemHtml) })
+      }
+
+
+      function buildAphorism(data) {
+          const words = ["je", "t'ai", "donne", "de", "moi", "tu", "as", "aussi", "pris", "beaucoup", "ca", "tu", "pourras", "le", "garder"];
+          return words.map(word => buildATweet(word, data[word])).join(' ')
+      }
+
+      function buildATweet(word, tweetObj) {
+          let tweet = tweetObj.text
+          //https://stackoverflow.com/a/37511463
+          // Z : normalize not on IE, old Android WebView...
+          const normalized = tweet.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
+          let index = undefined
+
+          let search = normalized
+
+          const searchTerm = (word == "t'ai")? "t’ai|t'ai" : word
+
+          const regexp = new RegExp(`\\b(${searchTerm})\\b`, 'gi')
+          let res = ""
+
+          while((index = search.search(regexp)) != -1) {
+
+              res += tweet.slice(0, index) + `<span class="word">${word}</span>`
+              tweet = tweet.slice(index + word.length)
+
+              search = search.slice(index + word.length)
+          }
+          res += tweet
+
+          res = `<span class="username">@${tweetObj.username} : </span>${res}`
+          return res
+      }
+
+      function loading(isLoading) {
+        document.getElementById("list").style
+          .cursor = isLoading ? "wait" : null
+      }
+
+      initialize()
+
+
+    </script>
+  </body>
+  </html>

@@ -170,3 +170,14 @@ a:hover, a.active {
     display: none;
   }
 }
+
+/* aphorism **********************************************/
+
+.aphorism .word {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.aphorism .word:hover {
+  text-shadow: 0 0 0.5pt #0000FF;
+}
