@@ -39,6 +39,7 @@
         padding: 30px;
         box-sizing: border-box;
         flex: 1 0 300px;
+        cursor: pointer;
       }
 
       .list .aphorism {
@@ -49,7 +50,7 @@
       /* popup **********************************************/
 
       .popup-background {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         width: 100%;
@@ -202,15 +203,32 @@
 
           // hide popup at start.
           document.getElementById("popup").style.display = "none"
-          loadMore()
+
+          //
+          window.addEventListener('scroll', () => {
+            const {
+                 scrollTop,
+                 scrollHeight,
+                 clientHeight
+            } = document.documentElement
+
+             if (scrollTop + clientHeight >= scrollHeight - 5) {
+               loadMore()
+             }
+           })
+           loadMore()
       }
 
       let lastMonth = null
       let lastYear = null
+      let firstAvailable = { year: 2021, month: 5 }
       function loadMore() {
         if (lastMonth == null && lastYear == null) {
           lastMonth = new Date().getMonth() + 1
           lastYear = new Date().getFullYear()
+        } else if (lastYear < firstAvailable.year
+          && lastMonth < firstAvailable.month) {
+          return Promise.reject()
         } else {
           if (lastMonth == 1) {
             lastMonth = 12
@@ -222,12 +240,11 @@
         const month = (lastMonth < 10) ? "0" + lastMonth : "" + lastMonth
 
         loading(true)
-        fetch(`/data/captures/${lastYear}/${month}.txt`)
+        return fetch(`/data/captures/${lastYear}/${month}.txt`)
         .then((response) => {
-          console.log(response)
-          response.text().then((raw) => {
+          return response.text().then((raw) => {
             console.log(raw)
-            raw.split("\n").forEach((line) => {
+            raw.split("\n").reverse().forEach((line) => {
               try {
                 const json = JSON.parse(line)
                 appendTweet(json)
@@ -236,17 +253,11 @@
             const items = document.getElementsByClassName("item")
             for (let i = 0; i < items.length; i++) {
               const item = items.item(i)
-              console.log(item)
-              item.addEventListener("click", (ev) => {
-                console.log("click ici !")
-                showPopup(i) })
+              item.onclick = (ev) => { showPopup(i) }
             }
-            //response.json().then(buildText)
-            // buildText(JSON.parse(raw))
             loading(false)
           })
         })
-        // buildText(dummy)
       }
 
       function showPopup(index) {
@@ -256,20 +267,30 @@
         document.getElementById("popup-content").innerHTML = items.item(index).innerHTML
         document.getElementById("popup").style.display = "block"
 
-        const previousElem = document.getElementById("previous-popup")
-        if (index > 0) {
-          previousElem.style.display = "block"
-          previousElem.addEventListener("click", (ev) => showPopup(index - 1))
-        } else {
-          previousElem.style.display = "none"
-        }
+        displayPopupPrevNext(
+          document.getElementById("previous-popup"),
+          index > 0,
+          index - 1)
 
-        const nextElem = document.getElementById("next-popup")
-        if (index < items.length - 1) {
-          nextElem.style.display = "block"
-          nextElem.addEventListener("click", (ev) => showPopup(index + 1))
+        const showNext = () => displayPopupPrevNext(
+          document.getElementById("next-popup"),
+          index < document.getElementsByClassName("item").length - 1,
+          index + 1)
+
+        if (index == items.length - 1) {
+          loadMore().then(showNext, showNext)
         } else {
-          nextElem.style.display = "none"
+          showNext()
+        }
+      }
+
+      function displayPopupPrevNext(element, isVisible, targetIndex) {
+        console.log(`here, isVisible: ${isVisible}, lenght: ${document.getElementsByClassName("item").length}`)
+        if (isVisible) {
+          element.style.display = "block"
+          element.onclick = (ev) => showPopup(targetIndex)
+        } else {
+          element.style.display = "none"
         }
       }
 
