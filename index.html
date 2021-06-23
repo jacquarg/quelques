@@ -29,38 +29,7 @@
         }
       }
 
-      /* aphorism **********************************************/
-
-      .aphorism .word {
-          font-weight: bold;
-          text-transform: uppercase;
-      }
-
-      .aphorism .word:hover {
-        text-shadow: 0 0 0.5pt #0000FF;
-      }
-
-
       /* popup **********************************************/
-
-      .popup-background {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-
-        background: #EDF2FACC;
-      }
-
-      .popup {
-        position: absolute;
-        left: 16px;
-        top: 16px;
-        right: 16px;
-        bottom: 16px;
-        background: #fdfefe;
-      }
 
       @media (min-width: 576px) {
         .popup {
@@ -74,22 +43,6 @@
         }
       }
 
-      .popup > .content {
-        height: calc(100% - 80px);
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 70px;
-        margin-bottom: 10px;
-
-        overflow-y: auto;
-        padding: 0 24px;
-
-        font-family: 'Cormorant Infant', serif;
-        font-size: 14pt;
-
-        scrollbar-width: thin;
-      }
-
       @media (min-width: 576px) {
         .popup > .content {
           height: 205px;
@@ -97,24 +50,6 @@
         }
       }
 
-      .popup > .close {
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        width: 70px;
-      }
-
-      @media (min-width: 576px) {
-        .popup > .close {
-          right: 8px;
-          top: 16px;
-        }
-      }
-
-      .popup a {
-            color: black;
-            text-decoration: none;
-      }
     </style>
   </head>
   <body id="body">
@@ -124,12 +59,12 @@
         <div class="close narrow-only" id="close-menu"><img src='./res/img/SMS-CROSS-02.png' /></div>
         <a href="./" class="home-btn large-only">#</a>
         <a href="./" class="home-btn narrow-only">#home</a>
-        <a href="./capture" class="capture-btn">#capture</a>
-        <a href="./about" class="about-btn">#àpropos</a>
+        <a href="./capture.html" class="capture-btn">#capture</a>
+        <a href="./about.html" class="about-btn">#àpropos</a>
       </div>
 
       <div class="copyright" id="copyright">Quelques mots pour quelque chose de terminé - 2020 - <a href="https://www.vaxt.fr"  target="_blank">V</a></div>
-      <div class="legal" id="legal"><a href="./legal">Mentions légales</a></div>
+      <div class="legal" id="legal"><a href="./legal.html">Mentions légales</a></div>
 
       <div class="content aphorism" id="aphorism"></div>
     </div>
@@ -163,8 +98,7 @@
     </div>
     <script src="./script/main.js"></script>
     <script>
-    const dummy = {"je":{"id":"1402869220535259139","text":"@mardiasih @Husen_Jafar mbak kaliis, kalo mau masak ikan lagi aku siap mbingkisi sekaligus anter ke rumah Jogja lho..itung2 kenalan je","username":"rajaikanstore"},"t'ai":{"id":"1402868973453066241","text":"@lisbeth12025939 @ckris_2b J'\u00e9tais un peu absent, je ne t'ai pas f\u00e9licit\u00e9 pour la qualification \ud83d\udc4d\ud83d\udc4d","username":"Jo63720293"},"donne":{"id":"1402869228378767360","text":"RT @alain69712768: Marseille pays de Pagnol, ''pierre, Fran\u00e7ois et Alain \" demande de l'eau a un homme. Celui-ci leur donne, il a eu le mal\u2026","username":"GuitardNicole2"},"de":{"id":"1402869237774000132","text":"@Rtnc_Officiel @FatKabongo Qui r\u00e9pond la @Rtnc_Officiel ou la personne qui se fait le plaisir de g\u00e9rer ce compte comme \u00e9tant le sien!?","username":"jimmykande"},"moi":{"id":"1402869235064389632","text":"@LaruelleMarc Si les femmes ont le droit de disposer de leur corps pour l'ivg, j'ai le droit moi aussi de disposer de mon corps comme bon me semble...","username":"Marinella_Maria"},"tu":{"id":"1402869249991798786","text":"@AdityaS_Indian Theek hai tu kehta toh \ud83e\udd27\ud83d\udeb6\u200d\u2640\ufe0f\ud83d\udeb6\u200d\u2640\ufe0f https:\/\/t.co\/xteXh4pzl1","username":"WTF_Aahana"},"as":{"id":"1402869254571970564","text":"RT @CoinMarketCap: El Salvador makes history in #Crypto \ud83d\ude80 \ud83d\udd25 \n\nEl Salvador is the FIRST country to officially recognised #BTC as legal tende\u2026","username":"dlgcWEjjxoi4pIz"},"aussi":{"id":"1402869258389016577","text":"RT @dav_cayla: Toi aussi invente ton sujet du bac SES.\nJe commence. 1\/3\n\n\"\u00c0 l'aide de vos connaissances et vous appuyant sur ses interviews\u2026","username":"OMamoudy"},"pris":{"id":"1402869257852145667","text":"@RanbooEXPLAINED pris is just one inch short of being 6\u201910\u201d","username":"peachnserenity"},"beaucoup":{"id":"1402869253015883779","text":"100% dark chocolate!!!\nmerci beaucoup mbak rina \ud83d\udc83\ud83c\udffb https:\/\/t.co\/ZuDchzUl6c","username":"avifahve"},"ca":{"id":"1402869271533850625","text":"@mathgarlaschi On va passer pour des peintres si on recrute ce retrait\u00e9. C'est \u00e7a le projet ?","username":"jeanphi3112"},"pourras":{"id":"1402868684578824192","text":"@Rigil_Kentarus J'ai quand m\u00eame bien envie de me lancer. Si jamais tu pourras faire un retour ce serait g\u00e9nial \ud83d\udc4d\ud83d\ude00","username":"HenryYoann2"},"le":{"id":"1402869288038502404","text":"hay una gringa re hermosa q me likea en ig y le re gusta mi m\u00fasica, cada vez m\u00e1s cerca de la ciudadan\u00eda","username":"basedtonywaddup"},"garder":{"id":"1402869261052297219","text":"@FJolivet36 @LindaKebbab @AbdoulayeK3 C\u2019est s\u00fbr ils ne vont pas garder tes momes","username":"Mhe_sch"},"timestamp":"2021-06-10T08:04:49+02:00"}
-
+    const dummy = {"je":{"id":"1407588626679091200","text":"RT @enjoy_thenoise: Je crois que Photoshop me dit ACAB. https:\/\/t.co\/wU6D93z7Nl","username":"babahatmos"},"t'ai":{"id":"1407587502274265096","text":"@mick78000 Je t'ai s\u00fbrement crois\u00e9 dans le Faubourg, mais pas vu de boxer \ud83e\udd2a\ud83d\ude09 https:\/\/t.co\/HMhM3lkObY","username":"tempsdetrajet"},"donne":{"id":"1407588630454050819","text":"RT @CanActu039: Depuis que je donne des codes harley aux plus actifs y'en a plein que j'ai jamais vu qui viennent me mp pour un code ou cad\u2026","username":"ZzeY___"},"de":{"id":"1407588643443707904","text":"Si no lo escuchaste de m\u00ed entonces es mentira","username":"elicanahui"},"moi":{"id":"1407588648179089408","text":"C'est sans doute \u00e7a le travail que je dois encore faire sur moi. M\u00eame si on m'avait pr\u00e9venu.","username":"maxjrberry"},"tu":{"id":"1407588655783419905","text":"RT @Ma5hall: Ready to roll this dice to Naivasha...nahitaji tu wasupa watatu tu\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02 https:\/\/t.co\/tWXE282VEO","username":"Clinty_ke"},"as":{"id":"1407588659965009922","text":"i don't care if he's a stem student he's MY comfort character and i will self project onto him as much as i want","username":"noyasyuuu"},"aussi":{"id":"1407588666634027009","text":"RT @ClimatEmploi: \"Un petit message personnel parce qu'on est entre nous, @KarimaDelli, c'est que je t'aime. Je suis jaloux aussi, j'aimera\u2026","username":"EmmerlinckF"},"pris":{"id":"1407588664037752836","text":"storytime: je suis tomb\u00e9e amoureuse d'un gars et il a pris du ferme.\nVrmnt jsuis trop triste :( fuck la prison","username":"tye1manstre"},"beaucoup":{"id":"1407588676645883912","text":"Beaucoup de relations avec Dieu sont trop bas\u00e9es sur les \u00e9motions..","username":"FeranmiIs"},"ca":{"id":"1407588682387832832","text":"h\u00e2te de voir Conjuring, ca date les films d\u2019horreur surtout au cin\u00e9ma","username":"wooseis1"},"pourras":{"id":"1407587322082873345","text":"@MatosSBG C\u2019est \u00e0 toi de bien repartir en fonction de ton nombre de book et ton capital. Avec 150\u20ac tu pourras facilement g\u00e9rer 3 \u00e0 4 books. Il faut mettre la somme en fonction du book car certain books sont mieux que d\u2019autres.","username":"JournalDuBet"},"le":{"id":"1407588702147297285","text":"Le foot de Plato, c\u2019est vraiment le pire jeu","username":"noaahbtx"},"garder":{"id":"1407588358575071235","text":"Xavier Bertrand : \"Pour l'avenir de la r\u00e9gion PACA, il n'y a pas photo (...) Renaud Muselier, c'est celui qui pourra continuer \u00e0 redonner et \u00e0 garder la fiert\u00e9 \u00e0 la r\u00e9gion PACA\" https:\/\/t.co\/88yj13Ngoo","username":"Europe1"},"timestamp":"2021-06-23T08:38:05+02:00"}
 
       // init
       function initialize() {
@@ -189,46 +123,17 @@
 
       function getFresh() {
         loading(true)
-        fetch("/api/get_fresh.php")
-        .then((response) => response.json())
+        //fetch("/api/get_fresh.php")
+        //.then((response) => response.json())
+        new Promise((resolve, reject) => { setTimeout(resolve, 20* 1000)}).then((res) => dummy)
         .then((json) => {
           buildText(json)
           loading(false)
         })
-        // buildText(dummy)
       }
 
       function buildText(data) {
-          const words = ["je", "t'ai", "donne", "de", "moi", "tu", "as", "aussi", "pris", "beaucoup", "ca", "tu", "pourras", "le", "garder"];
-          document.getElementById("aphorism").innerHTML = words.map(word => buildATweet(word, data[word])).join(' ')
-      }
-
-      function buildATweet(word, tweetObj) {
-          let tweet = tweetObj.text
-          //https://stackoverflow.com/a/37511463
-          // Z : normalize not on IE, old Android WebView...
-          const normalized = tweet.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-
-          let index = undefined
-
-          let search = normalized
-
-          const searchTerm = (word == "t'ai")? "t’ai|t'ai" : word
-
-          const regexp = new RegExp(`\\b(${searchTerm})\\b`, 'gi')
-          let res = ""
-
-          while((index = search.search(regexp)) != -1) {
-
-              res += tweet.slice(0, index) + `<span class="word">${word}</span>`
-              tweet = tweet.slice(index + word.length)
-
-              search = search.slice(index + word.length)
-          }
-          res += tweet
-
-          res = `<span class="username">@${tweetObj.username} : </span>${res}`
-          return res
+        document.getElementById("aphorism").innerHTML = buildAphorism(data)
       }
 
       function loading(isLoading) {
