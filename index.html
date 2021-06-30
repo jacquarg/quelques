@@ -18,16 +18,30 @@
       .content {
         margin: 24px;
         padding-top: 100px;
+        cursor: pointer;
       }
       @media (min-width: 576px) {
         .content {
-          width: 576px;
+          max-width: 1000px;
+          padding-top: 150px;
+          padding-bottom: 150px;
+          padding-left: 24px;
+          padding-right: 24px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      @media (min-width: 1400px) {
+        .content {
+          width: 1000px;
           padding-top: 150px;
           padding-bottom: 150px;
           margin-left: auto;
           margin-right: auto;
         }
       }
+
 
       /* popup **********************************************/
 
@@ -64,7 +78,6 @@
       </div>
 
       <div class="copyright" id="copyright">Quelques mots pour quelque chose de terminé - 2020 - <a href="https://www.vaxt.fr"  target="_blank">V</a></div>
-      <div class="legal" id="legal"><a href="./legal.html">Mentions légales</a></div>
 
       <div class="content aphorism" id="aphorism"></div>
     </div>
@@ -100,6 +113,7 @@
     <script>
     const dummy = {"je":{"id":"1407588626679091200","text":"RT @enjoy_thenoise: Je crois que Photoshop me dit ACAB. https:\/\/t.co\/wU6D93z7Nl","username":"babahatmos"},"t'ai":{"id":"1407587502274265096","text":"@mick78000 Je t'ai s\u00fbrement crois\u00e9 dans le Faubourg, mais pas vu de boxer \ud83e\udd2a\ud83d\ude09 https:\/\/t.co\/HMhM3lkObY","username":"tempsdetrajet"},"donne":{"id":"1407588630454050819","text":"RT @CanActu039: Depuis que je donne des codes harley aux plus actifs y'en a plein que j'ai jamais vu qui viennent me mp pour un code ou cad\u2026","username":"ZzeY___"},"de":{"id":"1407588643443707904","text":"Si no lo escuchaste de m\u00ed entonces es mentira","username":"elicanahui"},"moi":{"id":"1407588648179089408","text":"C'est sans doute \u00e7a le travail que je dois encore faire sur moi. M\u00eame si on m'avait pr\u00e9venu.","username":"maxjrberry"},"tu":{"id":"1407588655783419905","text":"RT @Ma5hall: Ready to roll this dice to Naivasha...nahitaji tu wasupa watatu tu\ud83d\ude02\ud83d\ude02\ud83d\ude02\ud83d\ude02 https:\/\/t.co\/tWXE282VEO","username":"Clinty_ke"},"as":{"id":"1407588659965009922","text":"i don't care if he's a stem student he's MY comfort character and i will self project onto him as much as i want","username":"noyasyuuu"},"aussi":{"id":"1407588666634027009","text":"RT @ClimatEmploi: \"Un petit message personnel parce qu'on est entre nous, @KarimaDelli, c'est que je t'aime. Je suis jaloux aussi, j'aimera\u2026","username":"EmmerlinckF"},"pris":{"id":"1407588664037752836","text":"storytime: je suis tomb\u00e9e amoureuse d'un gars et il a pris du ferme.\nVrmnt jsuis trop triste :( fuck la prison","username":"tye1manstre"},"beaucoup":{"id":"1407588676645883912","text":"Beaucoup de relations avec Dieu sont trop bas\u00e9es sur les \u00e9motions..","username":"FeranmiIs"},"ca":{"id":"1407588682387832832","text":"h\u00e2te de voir Conjuring, ca date les films d\u2019horreur surtout au cin\u00e9ma","username":"wooseis1"},"pourras":{"id":"1407587322082873345","text":"@MatosSBG C\u2019est \u00e0 toi de bien repartir en fonction de ton nombre de book et ton capital. Avec 150\u20ac tu pourras facilement g\u00e9rer 3 \u00e0 4 books. Il faut mettre la somme en fonction du book car certain books sont mieux que d\u2019autres.","username":"JournalDuBet"},"le":{"id":"1407588702147297285","text":"Le foot de Plato, c\u2019est vraiment le pire jeu","username":"noaahbtx"},"garder":{"id":"1407588358575071235","text":"Xavier Bertrand : \"Pour l'avenir de la r\u00e9gion PACA, il n'y a pas photo (...) Renaud Muselier, c'est celui qui pourra continuer \u00e0 redonner et \u00e0 garder la fiert\u00e9 \u00e0 la r\u00e9gion PACA\" https:\/\/t.co\/88yj13Ngoo","username":"Europe1"},"timestamp":"2021-06-23T08:38:05+02:00"}
 
+      let isLoading = false
       // init
       function initialize() {
         initializeMenu()
@@ -116,16 +130,18 @@
             document.getElementById("popup").style.display = "none"
           })
 
+          document.getElementById("aphorism").addEventListener("click", ev => getFresh())
           // hide popup at start.
             // document.getElementById("popup").style.display = "none"
           getFresh()
       }
 
       function getFresh() {
+        if (isLoading) { return }
         loading(true)
         //fetch("/api/get_fresh.php")
         //.then((response) => response.json())
-        new Promise((resolve, reject) => { setTimeout(resolve, 20* 1000)}).then((res) => dummy)
+        new Promise((resolve, reject) => { setTimeout(resolve, 2* 1000)}).then((res) => dummy)
         .then((json) => {
           buildText(json)
           loading(false)
@@ -136,7 +152,9 @@
         document.getElementById("aphorism").innerHTML = buildAphorism(data)
       }
 
-      function loading(isLoading) {
+
+      function loading(load) {
+        isLoading = load
         document.getElementById("aphorism").style
           .cursor = isLoading ? "wait" : null
       }

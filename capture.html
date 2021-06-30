@@ -38,12 +38,12 @@
       .list .item {
         padding: 30px;
         box-sizing: border-box;
-        flex: 1 0 300px;
+        flex: 1 0 400px;
         cursor: pointer;
       }
 
       .list .aphorism {
-        font-size: 12pt;
+        font-size: 8pt;
       }
 
 
@@ -189,7 +189,7 @@
         const month = (lastMonth < 10) ? "0" + lastMonth : "" + lastMonth
 
         loading(true)
-        return fetch(`/data/captures/${lastYear}/${month}.txt`)
+        return fetch(`./data/captures/${lastYear}/${month}.txt`)
         .then((response) => {
           return response.text().then((raw) => {
             console.log(raw)
