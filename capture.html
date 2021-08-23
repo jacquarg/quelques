@@ -80,13 +80,16 @@
       .popup .next {
         position: absolute;
         top: 0px;
-        width: 70px;
+        width: 38px;
+        height: 60px;
       }
 
+    
       .popup .previous {
-        left: 0px;
+        transform: scaleX(-1);
       }
-      .popup .previous {
+
+      .popup .next {
         left: 70px;
       }
 
@@ -100,7 +103,6 @@
           left: 0px;
         }
         .popup .next {
-
           right: 0px;
         }
       }
@@ -127,8 +129,8 @@
     <div class="popup-background" id="popup">
       <div class="popup" >
         <div class="close" id="close-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
-        <div class="previous" id="previous-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
-        <div class="next" id="next-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
+        <div class="previous" id="previous-popup"><img src='./res/img/bigger.jpg' /></div>
+        <div class="next" id="next-popup"><img src='./res/img/bigger.jpg' /></div>
         <div id="popup-content" class="content"/>
       </div>
     </div>
