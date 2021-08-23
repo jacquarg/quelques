@@ -139,9 +139,9 @@
       function getFresh() {
         if (isLoading) { return }
         loading(true)
-        //fetch("/api/get_fresh.php")
-        //.then((response) => response.json())
-        new Promise((resolve, reject) => { setTimeout(resolve, 2* 1000)}).then((res) => dummy)
+        fetch("/api/get_fresh.php")
+        .then((response) => response.json())
+        //new Promise((resolve, reject) => { setTimeout(resolve, 2* 1000)}).then((res) => dummy)
         .then((json) => {
           buildText(json)
           loading(false)
