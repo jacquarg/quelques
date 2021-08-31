@@ -30,20 +30,27 @@
       } */
 
       /* list **********************************************/
-      .list {
-        display: flex;
-        flex-wrap: wrap;
+      .list .item {
+        width: 100%;
+        cursor: pointer;
+        box-sizing: border-box;
+        padding: 30px;
       }
 
-      .list .item {
-        padding: 30px;
-        box-sizing: border-box;
-        flex: 1 0 400px;
-        cursor: pointer;
-      }
 
       .list .aphorism {
         font-size: 8pt;
+      }
+
+      @media (min-width: 716px) {
+        .list {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .list .item {
+          flex: 1 0 400px;
+        }
       }
 
 
@@ -84,7 +91,7 @@
         height: 60px;
       }
 
-    
+
       .popup .previous {
         transform: scaleX(-1);
       }
@@ -103,6 +110,7 @@
           left: 0px;
         }
         .popup .next {
+          left: auto;
           right: 0px;
         }
       }
@@ -111,9 +119,9 @@
   </head>
   <body id="body">
     <div class="main-container" id="main-container">
-      <div class="menu-btn narrow-only" id="menu-btn"><img src='./res/img/SMS-CROSS-02.png' /></div>
+      <div class="menu-btn narrow-only" id="menu-btn"><img src='./res/img/menu.png' /></div>
       <div class="menu" id="menu">
-        <div class="close narrow-only" id="close-menu"><img src='./res/img/SMS-CROSS-02.png' /></div>
+        <div class="close narrow-only" id="close-menu"><img src='./res/img/close.png' /></div>
         <a href="./" class="home-btn large-only">#</a>
         <a href="./" class="home-btn narrow-only">#home</a>
         <a href="./capture.html" class="capture-btn">#capture</a>
@@ -128,9 +136,9 @@
 
     <div class="popup-background" id="popup">
       <div class="popup" >
-        <div class="close" id="close-popup"><img src='./res/img/SMS-CROSS-02.png' /></div>
-        <div class="previous" id="previous-popup"><img src='./res/img/bigger.jpg' /></div>
-        <div class="next" id="next-popup"><img src='./res/img/bigger.jpg' /></div>
+        <div class="close" id="close-popup"><img src='./res/img/close.png' /></div>
+        <div class="previous" id="previous-popup"><img src='./res/img/bigger.png' /></div>
+        <div class="next" id="next-popup"><img src='./res/img/bigger.png' /></div>
         <div id="popup-content" class="content"/>
       </div>
     </div>
