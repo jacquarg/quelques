@@ -190,7 +190,7 @@ a:hover, a.active {
     text-transform: uppercase;
 }
 
-.aphorism .word:hover {
+.aphorism .word/*:hover*/ {
   color: #0000FF;
   /* text-shadow: 0 0 0.5pt #0000FF; */
 }
